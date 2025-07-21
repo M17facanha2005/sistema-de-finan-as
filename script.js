@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Variáveis globais
     let transacoes = JSON.parse(localStorage.getItem('transacoes')) || [];
     let categorias = JSON.parse(localStorage.getItem('categorias')) || {
-        receita: ['salario', 'investimentos', 'presente', 'outros'],
+        receita: ['salario', 'BOTS','investimentos', 'presente', 'outros'],
         despesa: ['alimentacao', 'Cartao','moradia', 'transporte', 'lazer', 'saude', 'educacao', 'outros']
     };
     let graficoCategorias, graficoMensal;
