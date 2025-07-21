@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Financeiro com Categorias</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Controle Financeiro</h1>
+            <div class="saldo-container">
+                <div class="saldo-card">
+                    <h3>Saldo Atual</h3>
+                    <p id="saldo-total">R$ 0,00</p>
+                </div>
+                <div class="saldo-card">
+                    <h3>Receitas</h3>
+                    <p id="total-receitas" class="positivo">R$ 0,00</p>
+                </div>
+                <div class="saldo-card">
+                    <h3>Despesas</h3>
+                    <p id="total-despesas" class="negativo">R$ 0,00</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="painel-adicionar">
+                <h2>➕ Nova Transação</h2>
+                <form id="transacao-form">
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <input type="text" id="descricao" placeholder="Ex: Salário, Aluguel..." required>
+                    </div>
+                    
+                    <div class="form-group-dupla">
+                        <div class="form-group">
+                            <label for="valor">Valor (R$)</label>
+                            <input type="number" id="valor" step="0.01" min="0.01" placeholder="0,00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="data">Data</label>
+                            <input type="date" id="data" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group-dupla">
+                        <div class="form-group">
+                            <label for="tipo">Tipo</label>
+                            <select id="tipo" required>
+                                <option value="receita">Receita</option>
+                                <option value="despesa">Despesa</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="categoria">Categoria</label>
+                            <div class="categoria-container">
+                                <select id="categoria" required>
+                                    <!-- Categorias serão carregadas dinamicamente -->
+                                </select>
+                                <button type="button" id="btn-nova-categoria">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit">Registrar Transação</button>
+                </form>
+            </section>
+
+            <section class="gerenciar-categorias">
+                <h2>🗂 Gerenciar Categorias</h2>
+                <div class="categorias-container">
+                    <div class="categorias-lista">
+                        <h3>Categorias de Receita</h3>
+                        <ul id="lista-categorias-receita"></ul>
+                    </div>
+                    <div class="categorias-lista">
+                        <h3>Categorias de Despesa</h3>
+                        <ul id="lista-categorias-despesa"></ul>
+                    </div>
+                </div>
+                <div class="nova-categoria-form">
+                    <input type="text" id="nova-categoria-nome" placeholder="Nome da nova categoria">
+                    <select id="nova-categoria-tipo">
+                        <option value="receita">Receita</option>
+                        <option value="despesa">Despesa</option>
+                    </select>
+                    <button id="btn-adicionar-categoria">Adicionar Categoria</button>
+                </div>
+            </section>
+
+            <section class="historico">
+                <h2>📋 Histórico de Transações</h2>
+                <div class="filtros">
+                    <select id="filtro-mes">
+                        <option value="todos">Todos os meses</option>
+                    </select>
+                    <select id="filtro-categoria">
+                        <option value="todos">Todas categorias</option>
+                    </select>
+                    <select id="filtro-tipo">
+                        <option value="todos">Todos os tipos</option>
+                        <option value="receita">Receitas</option>
+                        <option value="despesa">Despesas</option>
+                    </select>
+                </div>
+                <table id="tabela-transacoes">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela">
+                        <!-- Transações serão inseridas aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para nova categoria -->
+    <div id="modal-categoria" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Nova Categoria</h2>
+            <input type="text" id="input-nova-categoria" placeholder="Nome da categoria">
+            <div class="modal-buttons">
+                <button id="btn-cancelar-categoria">Cancelar</button>
+                <button id="btn-confirmar-categoria">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
