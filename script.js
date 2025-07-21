@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let transacoes = JSON.parse(localStorage.getItem('transacoes')) || [];
     let categorias = JSON.parse(localStorage.getItem('categorias')) || {
         receita: ['salario', 'investimentos', 'presente', 'outros'],
-        despesa: ['alimentacao', 'moradia', 'transporte', 'lazer', 'saude', 'educacao', 'outros']
+        despesa: ['alimentacao', 'Cartao','moradia', 'transporte', 'lazer', 'saude', 'educacao', 'outros']
     };
     let graficoCategorias, graficoMensal;
 
